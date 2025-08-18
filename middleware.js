@@ -1,20 +1,22 @@
-import { NextResponse } from 'next/server';
-
-export function middleware(request) {
+export default function middleware(request) {
   // 设定的正确密码
   const correctPassword = 'Syh08240319';
   
   // 从请求中获取密码（通过查询参数）
-  const password = request.nextUrl.searchParams.get('password');
+  const { searchParams } = new URL(request.url);
+  const password = searchParams.get('password');
   
   // 如果密码正确，允许访问
   if (password === correctPassword) {
-    return NextResponse.next();
+    return new Response(null, { status: 200 });
   }
   
   // 密码错误或未提供，返回 401 未授权
-  return new NextResponse('Unauthorized: Please provide correct password in URL as ?password=yourSecretPassword', { 
-    status: 401
+  return new Response('Unauthorized: Please provide correct password in URL as ?password=Syh08240319', { 
+    status: 401,
+    headers: {
+      'Content-Type': 'text/plain'
+    }
   });
 }
 
