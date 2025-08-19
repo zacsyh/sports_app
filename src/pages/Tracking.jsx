@@ -56,7 +56,9 @@ const Tracking = () => {
             setSessionData({ completedSets: projectData.completedSets });
           }
           // 设置当前组数为已完成组数+1
-          const completedCount = projectData.completedSets ? projectData.completedSets.length : 0;
+          const completedCount = projectData.completedSets 
+            ? projectData.completedSets.reduce((sum, count) => sum + count, 0)
+            : 0;
           setCurrentSet(Math.min(completedCount + 1, projectData.sets));
         }
       } else {
@@ -116,7 +118,8 @@ const Tracking = () => {
       setSessionData({ ...sessionData, completedSets: newCompletedSets });
       
       // 更新当前组数
-      const newCurrentSet = Math.min(currentSet + repsCompletedInCurrentSet, project.sets); // 前进实际完成的组数
+      const totalCompletedSets = newCompletedSets.reduce((sum, count) => sum + count, 0);
+      const newCurrentSet = Math.min(totalCompletedSets + 1, project.sets); // 前进到下一组
       setCurrentSet(newCurrentSet);
       setRepsCompletedInCurrentSet(0);
       
