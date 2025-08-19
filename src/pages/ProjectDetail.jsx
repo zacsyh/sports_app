@@ -76,8 +76,11 @@ const ProjectDetail = () => {
 
   const calculateProgress = (project) => {
     if (project.type === 'SETS_REPS') {
-      const completedSets = project.completedSets ? project.completedSets.length : 0;
-      return project.sets > 0 ? (completedSets / project.sets) * 100 : 0;
+      // 计算实际完成的总组数，而不是操作次数
+      const totalCompletedSets = project.completedSets 
+        ? project.completedSets.reduce((sum, count) => sum + count, 0) 
+        : 0;
+      return project.sets > 0 ? (totalCompletedSets / project.sets) * 100 : 0;
     } else {
       return project.targetCount > 0 ? (project.currentCount || 0) / project.targetCount * 100 : 0;
     }
@@ -196,7 +199,11 @@ const ProjectDetail = () => {
               </div>
               {project.type === 'SETS_REPS' ? (
                 <div className="sets-reps-progress">
-                  <p>已完成 {project.completedSets ? project.completedSets.length : 0} 组/共 {project.sets} 组</p>
+                  <p>已完成 {
+                    project.completedSets 
+                      ? project.completedSets.reduce((sum, count) => sum + count, 0) 
+                      : 0
+                  } 组/共 {project.sets} 组</p>
                 </div>
               ) : (
                 <div className="count-weight-progress">
