@@ -214,10 +214,54 @@ body {
   font-weight: bold;
 }
 
+.project-completed-home-large {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.project-reminder-home {
+  display: inline-block;
+  background-color: #2196F3;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.project-progress-text {
+  font-size: 16px;
+  color: #666666;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.project-header h3 {
+  margin: 0;
+  flex: 1;
+}
+
+.project-status-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 40px; /* 添加右边距，避免与删除按钮重叠 */
+}
+
 .delete-button {
   position: absolute;
   top: 16px;
-  right: 16px;
+  right: 1px;
   background-color: #f44336;
   color: white;
   border: none;
@@ -228,24 +272,76 @@ body {
 }
 
 /* yub7 */
-.create-project-page {
+/* 编辑项目页面样式 */
+.edit-project-page {
   padding: 16px;
   min-height: 100vh;
   background-color: var(--bg-color);
 }
 
-.create-project-header {
+.edit-project-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 24px;
+  background-color: var(--header-bg);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.create-project-header h1 {
-  font-size: 20px;
-  color: #333333;
-  margin: 0;
+.edit-project-header h1 {
   flex: 1;
+  font-size: 20px;
+  color: var(--text-color);
+  margin: 0;
   text-align: center;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.save-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.save-button:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.save-button:disabled {
+  background-color: var(--primary-color);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.edit-project-form {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.type-display {
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  font-size: 16px;
 }
 
 .back-button {
@@ -417,15 +513,6 @@ body {
   text-overflow: ellipsis;
 }
 
-.back-button {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #333333;
-  padding: 8px;
-  margin-right: 8px;
-}
 
 .edit-button {
   background: none;
@@ -485,6 +572,18 @@ body {
   font-size: 16px;
   margin-bottom: 16px;
   font-weight: bold;
+}
+
+.project-reminder-tag {
+  display: inline-block;
+  background-color: #2196F3;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 16px;
+  font-weight: bold;
+  margin-left: 8px;
 }
 
 .project-created-at {
@@ -885,7 +984,39 @@ body {
   margin: 0;
 }
 
-/* 自定义次数模态框样式 */
+/* 编辑历史记录按钮 */
+.edit-history-button {
+  background-color: #ff6b35;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.edit-history-button:hover {
+  background-color: #e55a2b;
+}
+
+/* 删除确认按钮 */
+.delete-confirm-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delete-confirm-button:hover {
+  background-color: #d32f2f;
+}
+
+/* 编辑模态框样式 */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -914,7 +1045,7 @@ body {
   color: #333333;
 }
 
-.custom-count-input {
+.edit-value-input {
   width: 100%;
   padding: 16px;
   border: 1px solid #e0e0e0;
@@ -925,9 +1056,21 @@ body {
   margin-bottom: 24px;
 }
 
-.custom-count-input:focus {
+.edit-value-input:focus {
   outline: none;
   border-color: #ff6b35;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.modal-actions .secondary-button,
+.modal-actions .primary-button {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 16px;
 }
 
 /* 主题样式 */
@@ -966,11 +1109,68 @@ body {
   color: var(--text-color);
 }
 
-/* 设置页面样式 */
-.settings-page {
+/* 提醒设置页面样式 */
+.reminder-settings-page {
   padding: 16px;
   min-height: 100vh;
   background-color: var(--bg-color);
+}
+
+.reminder-settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  background-color: var(--header-bg);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reminder-settings-header h1 {
+  flex: 1;
+  font-size: 20px;
+  color: var(--text-color);
+  margin: 0;
+  text-align: center;
+}
+
+.reminder-settings-content {
+  margin-bottom: 80px; /* 为底部按钮留出空间 */
+}
+
+.reminder-form {
+  margin-top: 16px;
+}
+
+.switch-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.switch-container span {
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.helper-text {
+  font-size: 14px;
+  color: var(--secondary-text);
+  margin-top: 4px;
+}
+
+.reminder-settings-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background-color: white;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .settings-header {
@@ -1195,6 +1395,7 @@ input:checked + .slider:before {
 .settings-page,
 .create-project-page,
 .project-detail-page,
-.tracking-page {
+.tracking-page,
+.reminder-settings-page {
   padding-bottom: 70px; /* 底部导航栏高度 */
 }

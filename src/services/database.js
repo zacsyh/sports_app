@@ -4,17 +4,17 @@ class FitnessTrackerDB extends Dexie {
   constructor() {
     super('fitness_tracker');
     
-    this.version(3).stores({
+    this.version(4).stores({
       user_preferences: '++id',
       fitness_projects: '++id, name, type, status, createdAt',
       progress_records: '++id, projectId, timestamp, type, value',
-      reminders: '++id',
+      reminders: '++id, projectId, enabled, deadline, remindBefore',
       achievements: '++id',
       statistics: '++id',
       weekly_stats: '++id',
       monthly_stats: '++id'
     }).upgrade(async (trans) => {
-      console.log('Upgrading database to version 3');
+      console.log('Upgrading database to version 4');
     });
     
     // 定义表结构

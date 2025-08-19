@@ -3,8 +3,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import CreateProject from './pages/CreateProject';
 import ProjectDetail from './pages/ProjectDetail';
+import EditProject from './pages/EditProject';
 import Tracking from './pages/Tracking';
 import Settings from './pages/Settings';
+import ReminderSettings from './pages/ReminderSettings';
 import { SettingsProvider, useSettings } from './components/settings/SettingsContext';
 
 // 创建路由配置
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
   {
     path: '/project/:id',
     element: <ProjectDetail />,
+  },
+  {
+    path: '/project/:id/edit',
+    element: <EditProject />,
+  },
+  {
+    path: '/project/:id/reminder',
+    element: <ReminderSettings />,
   },
   {
     path: '/tracking/:id',
