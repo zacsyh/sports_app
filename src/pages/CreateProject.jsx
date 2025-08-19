@@ -265,14 +265,14 @@ const CreateProject = () => {
               className={`tab ${formData.type === 'SETS_REPS' ? 'active' : ''}`}
               onClick={() => handleTypeChange('SETS_REPS')}
             >
-              Sets×Reps
+              组数×次数
             </button>
             <button
               type="button"
               className={`tab ${formData.type === 'TOTAL_COUNT' ? 'active' : ''}`}
               onClick={() => handleTypeChange('TOTAL_COUNT')}
             >
-              Total count/weight
+              总个数/重量
             </button>
           </div>
         </div>
