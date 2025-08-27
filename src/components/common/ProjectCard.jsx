@@ -2,15 +2,24 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+// 直接导入所有背景图片
+import photo1 from '../../assets/images/card-backgrounds/photo1.png';
+import photo2 from '../../assets/images/card-backgrounds/photo2.png';
+import photo3 from '../../assets/images/card-backgrounds/photo3.png';
+import photo4 from '../../assets/images/card-backgrounds/photo4.png';
+import photo5 from '../../assets/images/card-backgrounds/photo5.png';
+import photo6 from '../../assets/images/card-backgrounds/photo6.png';
+import photo7 from '../../assets/images/card-backgrounds/photo7.png';
+
 // 定义背景图片数组
 const backgroundImages = [
-  '../../assets/images/card-backgrounds/photo1.png',
-  '../../assets/images/card-backgrounds/photo2.png',
-  '../../assets/images/card-backgrounds/photo3.png',
-  '../../assets/images/card-backgrounds/photo4.png',
-  '../../assets/images/card-backgrounds/photo5.png',
-  '../../assets/images/card-backgrounds/photo6.png',
-  '../../assets/images/card-backgrounds/photo7.png'
+  photo1,
+  photo2,
+  photo3,
+  photo4,
+  photo5,
+  photo6,
+  photo7
 ];
 
 const ProjectCard = ({ project, onDelete, reminders, formatDeadline, calculateTimeRemaining }) => {
@@ -38,22 +47,10 @@ const ProjectCard = ({ project, onDelete, reminders, formatDeadline, calculateTi
   const [backgroundImage, setBackgroundImage] = useState('');
   
   useEffect(() => {
-    const loadImage = async () => {
-      // 随机选择一个背景图片
-      const randomIndex = Math.floor(Math.random() * backgroundImages.length);
-      const randomImage = backgroundImages[randomIndex];
-      
-      try {
-        const imageModule = await import(randomImage);
-        setBackgroundImage(imageModule.default);
-      } catch (error) {
-        console.error('Failed to load background image:', error);
-        // 使用默认背景色
-        setBackgroundImage('');
-      }
-    };
-    
-    loadImage();
+    // 随机选择一个背景图片
+    const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+    const randomImage = backgroundImages[randomIndex];
+    setBackgroundImage(randomImage);
   }, []);
 
   return (
