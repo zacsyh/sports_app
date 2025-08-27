@@ -211,7 +211,7 @@ const Settings = () => {
             </div>
             <div className="setting-control">
               <span className="setting-value">
-                {preferences?.appVersion || '1.0.0'}
+                {preferences?.appVersion || '1.0.5'}
               </span>
             </div>
           </div>
