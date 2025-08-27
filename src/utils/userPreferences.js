@@ -20,8 +20,6 @@ export const DEFAULT_USER_PREFERENCES = {
   // 最后同步时间
   lastSyncTime: 0,
   
-  // 应用版本
-  appVersion: '1.0.0'
 };
 
 // 可选的主题值
