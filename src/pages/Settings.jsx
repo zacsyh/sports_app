@@ -211,7 +211,7 @@ const Settings = () => {
             </div>
             <div className="setting-control">
               <span className="setting-value">
-                1.0.5
+                1.1.0
               </span>
             </div>
           </div>
